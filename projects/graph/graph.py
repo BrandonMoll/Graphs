@@ -8,27 +8,39 @@ class Graph:
     def __init__(self):
         self.vertices = {}
     def add_vertex(self, vertex):
-        """
-        Add a vertex to the graph.
-        """
-        pass  # TODO
+        self.vertices[vertex] = set()
+
     def add_edge(self, v1, v2):
-        """
-        Add a directed edge to the graph.
-        """
-        pass  # TODO
+        self.vertices[v1].add(v2)
+
     def bft(self, starting_vertex):
-        """
-        Print each vertex in breadth-first order
-        beginning from starting_vertex.
-        """
-        pass  # TODO
+        visited = []
+        Q = Queue()
+        Q.enqueue(starting_vertex)
+        visited.append(starting_vertex)
+        while Q.queue:
+            vertex = Q.dequeue()
+            for neighbor in self.vertices[vertex]:
+                if neighbor not in visited:
+                    visited.append(neighbor)
+                    Q.enqueue(neighbor)
+        # print('BFT: ', visited)
+                    
+
     def dft(self, starting_vertex):
-        """
-        Print each vertex in depth-first order
-        beginning from starting_vertex.
-        """
-        pass  # TODO
+        visited = []
+        S = Stack()
+        S.push(starting_vertex)
+        while S.stack:
+            vertex = S.pop()
+            if vertex in visited:
+                continue
+            visited.append(vertex)
+            for neighbor in self.vertices[vertex]:
+                S.push(neighbor)
+        print('DFT: ', visited)
+
+
     def dft_recursive(self, starting_vertex):
         """
         Print each vertex in depth-first order
@@ -115,17 +127,17 @@ if __name__ == '__main__':
         1, 2, 4, 7, 6, 3, 5
         1, 2, 4, 6, 3, 5, 7
     '''
-    graph.dft_recursive(1)
+    # graph.dft_recursive(1)
 
     '''
     Valid BFS path:
         [1, 2, 4, 6]
     '''
-    print(graph.bfs(1, 6))
+    # print(graph.bfs(1, 6))
 
     '''
     Valid DFS paths:
         [1, 2, 4, 6]
         [1, 2, 4, 7, 6]
     '''
-    print(graph.dfs(1, 6))
+    # print(graph.dfs(1, 6))
