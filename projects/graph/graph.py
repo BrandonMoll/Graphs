@@ -44,8 +44,14 @@ class Graph:
         print('DFT: ', visited)
 
 
-    def dft_recursive(self, starting_vertex, path = []):
-        pass
+    def dft_recursive(self, starting_vertex, visited=None):
+        if visited == None:
+            visited = set()
+        visited.add(starting_vertex)
+        for vert in self.vertices[starting_vertex]:
+            if vert not in visited:
+                self.dft_recursive(vert, visited)
+        return visited
 
     def bfs(self, starting_vertex, destination_vertex):
         q = Queue()

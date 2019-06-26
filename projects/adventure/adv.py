@@ -43,9 +43,9 @@ else:
 
 
 
-#######
+######
 # UNCOMMENT TO WALK AROUND
-#######
+######
 # player.currentRoom.printRoomDescription(player)
 # while True:
 #     cmds = input("-> ").lower().split(" ")
